@@ -5,6 +5,7 @@ import (
 	"fmt"
 )
 
+// Convert func: to convert input int to duration string
 func Convert(seconds int) string {
 	var minutes, hours, days int
 	if seconds > 59 {
