@@ -14,7 +14,9 @@ func main() {
 		secondString := os.Args[1]
 		secondInt, err := strconv.Atoi(secondString)
 		if err != nil {
-			panic(err) // Output: strconv went wrong: conversion went wrong
+			// Output: strconv went wrong: conversion went wrong
+			fmt.Printf("ERROR: %q", err)
+			return
 		}
 		fmt.Println(duration.Convert(secondInt))
 	} else {
@@ -22,14 +24,16 @@ func main() {
 		for scanner.Scan() {
 			secondInt, err := strconv.Atoi(scanner.Text())
 			if err != nil {
-				panic(err) // Output: strconv went wrong: conversion went wrong
+				// Output: strconv went wrong: conversion went wrong
+				fmt.Printf("ERROR: %q", err)
+				return
 			}
 			fmt.Println(duration.Convert(secondInt))
 		}
 		if scanner.Err() != nil {
-			panic(scanner.Err())
+			// Output: scanner went wrong: First non EOF Error returned
+			fmt.Printf("ERROR: %q", scanner.Err())
+			return
 		}
-		// err := errors.New("No input supplied")
-		// panic(err)
 	}
 }
